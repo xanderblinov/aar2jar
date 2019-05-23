@@ -22,3 +22,4 @@ implementation "com.android.support:support-annotations:28.0.0"
 //or 
 runtimeOnly "com.android.support:support-annotations:28.0.0"
 ```
+[Presentation Mobuis 2019 RUS](https://drive.google.com/open?id=1r68gebquy6nSALzrCyP3kpK14tFL51pd)
