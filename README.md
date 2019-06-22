@@ -6,7 +6,7 @@ How to use: add following lines in your module's `build.gradle` file
 ```
 plugins {
 	id 'kotlin'
-	id 'com.stepango.aar2jar' version “0.4” // <- this one
+	id 'com.stepango.aar2jar' version “0.5” // <- this one
 }
 
 
