@@ -79,7 +79,6 @@ class Aar2Jar : Plugin<Project> {
             sourceSets.withName("test") {
                 compileClasspath += this@configure
                 runtimeClasspath += this@configure
-
             }
         }
 
