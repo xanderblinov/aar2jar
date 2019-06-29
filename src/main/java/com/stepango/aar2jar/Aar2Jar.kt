@@ -36,6 +36,8 @@ class Aar2Jar : Plugin<Project> {
 
         val compileOnlyAar = project.configurations.register("compileOnlyAar")
         val implementationAar = project.configurations.register("implementationAar")
+        val testCompileOnlyAar = project.configurations.register("testCompileOnlyAar")
+        val testImplementationAar = project.configurations.register("testImplementationAar")
         val sourceSets = project.the<JavaPluginConvention>().sourceSets
 
         compileOnlyAar.configure {
@@ -59,6 +61,28 @@ class Aar2Jar : Plugin<Project> {
             }
         }
 
+        testCompileOnlyAar.configure {
+            isTransitive = false
+            attributes {
+                attribute(ARTIFACT_FORMAT, ArtifactTypeDefinition.JAR_TYPE)
+            }
+            sourceSets.withName("test") {
+                compileClasspath += this@configure
+            }
+        }
+
+        testImplementationAar.configure {
+            isTransitive = false
+            attributes {
+                attribute(ARTIFACT_FORMAT, ArtifactTypeDefinition.JAR_TYPE)
+            }
+            sourceSets.withName("test") {
+                compileClasspath += this@configure
+                runtimeClasspath += this@configure
+
+            }
+        }
+
         project.extensions
                 .getByType<IdeaModel>()
                 .module
@@ -67,6 +91,8 @@ class Aar2Jar : Plugin<Project> {
                 ?.apply {
                     add(implementationAar.get())
                     add(compileOnlyAar.get())
+                    add(testImplementationAar.get())
+                    add(testCompileOnlyAar.get())
                 }
 
     }
