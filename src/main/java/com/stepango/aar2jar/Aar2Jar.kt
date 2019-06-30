@@ -93,6 +93,17 @@ class Aar2Jar : Plugin<Project> {
                     add(testImplementationAar.get())
                     add(testCompileOnlyAar.get())
                 }
+        project.extensions
+                .getByType<IdeaModel>()
+                .module
+                .scopes["TEST"]
+                ?.get("plus")
+                ?.apply {
+                    add(implementationAar.get())
+                    add(compileOnlyAar.get())
+                    add(testImplementationAar.get())
+                    add(testCompileOnlyAar.get())
+                }
 
     }
 }
